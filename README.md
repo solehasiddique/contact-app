@@ -30,24 +30,23 @@ A simple and clean **Contact Management Application** built using the **MERN sta
 contact-app/
 │
 ├── backend/
-│   ├── models/
-│   │   └── Contact.js
-│   ├── routes/
-│   │   └── contactRoutes.js
-│   ├── .env
-│   ├── server.js
-│   └── package.json
+│ ├── models/
+│ │ └── Contact.js # Mongoose schema for contacts
+│ ├── routes/
+│ │ └── contactRoutes.js # API routes for CRUD operations
+│ ├── .env # Environment variables
+│ ├── server.js # Express server setup
+│ └── package.json # Backend dependencies
 │
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── ContactForm.jsx
-│   │   │   └── ContactList.jsx
-│   │   ├── App.jsx
-│   │   ├── App.css
-│   │   └── main.jsx
-│   └── package.json
+├── src/ # Frontend React app
+│ ├── components/
+│ │ ├── ContactForm.jsx # Form to add a new contact with validation
+│ │ └── ContactList.jsx # Displays contacts with sorting & delete
+│ ├── App.jsx # Main React component
+│ ├── App.css # Styling for frontend
+│ └── main.jsx # React DOM render entry
 │
+├── package.json # Frontend dependencies
 └── README.md
 ```
 
