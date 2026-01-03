@@ -26,29 +26,33 @@ A simple and clean **Contact Management Application** built using the **MERN sta
 
 ## 🗂️ Project Structure
 
-```
+````
 contact-app/
 │
 ├── backend/
 │ ├── models/
-│ │ └── Contact.js # Mongoose schema for contacts
+│ │ └── Contact.js
 │ ├── routes/
-│ │ └── contactRoutes.js # API routes for CRUD operations
-│ ├── .env # Environment variables
-│ ├── server.js # Express server setup
-│ └── package.json # Backend dependencies
+│ │ └── contactRoutes.js
+│ ├── .env
+│ ├── server.js
+│ └── package.json
 │
-├── src/ # Frontend React app
+├── api/
+│ ├── contacts/
+│ │ ├── index.js
+│ │ └── [id].js
+│
+├── src/
 │ ├── components/
-│ │ ├── ContactForm.jsx # Form to add a new contact with validation
-│ │ └── ContactList.jsx # Displays contacts with sorting & delete
-│ ├── App.jsx # Main React component
-│ ├── App.css # Styling for frontend
-│ └── main.jsx # React DOM render entry
+│ │ ├── ContactForm.jsx
+│ │ └── ContactList.jsx
+│ ├── App.jsx
+│ ├── App.css
+│ └── main.jsx
 │
-├── package.json # Frontend dependencies
+├── package.json
 └── README.md
-```
 
 ---
 
@@ -119,7 +123,7 @@ This component is responsible for:
 
 ## models/Contact.js
 
-This file defines the MongoDB schema for a contact.  
+This file defines the MongoDB schema for a contact.
 It includes the following fields:
 
 - `name` (required)
@@ -139,6 +143,40 @@ This file defines the API endpoints for managing contacts:
 - `DELETE /api/contacts/:id` – Delete a contact by its unique ID.
 
 Together, `Contact.js` and `contactRoutes.js` handle the backend logic, including data storage and CRUD operations for the Contact App.
+
+## 🗄️ API Folder (Vercel Serverless Functions)
+
+The `api/` folder contains serverless endpoints used for Vercel deployment. Each file in this folder automatically becomes an API route that can be accessed from the frontend.
+
+### Structure
+
+api/
+├── contacts/
+│ ├── index.js # Handles GET (fetch all contacts) and POST (create a new contact)
+│ └── [id].js # Handles DELETE (delete a contact by ID) and can be extended for PUT (update)
+
+### Purpose
+
+- **Vercel Serverless Deployment**: Vercel automatically treats files inside `api/` as serverless functions.
+- **Dynamic Routes**: The `[id].js` file allows operations on individual contacts using their MongoDB `_id`.
+- **Frontend Integration**: The React app calls these endpoints using `axios`:
+  - `GET /api/contacts` → fetch all contacts
+  - `POST /api/contacts` → add a new contact
+  - `DELETE /api/contacts/:id` → delete a contact by ID
+- **No Separate Backend Server Needed**: The API folder removes the need to run an Express server for deployment, making the app fully serverless on Vercel.
+
+### Example Usage
+
+```js
+// Fetch all contacts
+axios.get("/api/contacts");
+
+// Add a contact
+axios.post("/api/contacts", { name, email, phone, message });
+
+// Delete a contact
+axios.delete(`/api/contacts/${contactId}`);
+
 
 ### Tech Used
 
@@ -161,9 +199,11 @@ Together, `Contact.js` and `contactRoutes.js` handle the backend logic, includin
 
 Create a `.env` file inside `backend/`:
 
-```
+````
+
 MONGO_URI=your_mongodb_connection_string
 PORT=5001
+
 ```
 
 ---
@@ -173,17 +213,21 @@ PORT=5001
 ### Backend
 
 ```
+
 cd backend
 npm install
 npm run dev
+
 ```
 
 ### Frontend
 
 ```
+
 cd frontend
 npm install
 npm run dev
+
 ```
 
 ---
@@ -218,3 +262,4 @@ Focused on MERN, Next.js & AI/ML
 ---
 
 ⭐ If you like this project, give it a star and feel free to fork it!
+```
