@@ -2,10 +2,12 @@
 node_modules/
 
 # Environment variables
-.env
+.env.local
 
 # Logs
 *.log
 
 # Vite / build outputs
 dist/
+.vercel
+.env*.local

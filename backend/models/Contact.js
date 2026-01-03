@@ -1,13 +1,14 @@
-const mongoose = require("mongoose");
 
-const contactSchema = new mongoose.Schema(
+import mongoose from "mongoose";
+
+const ContactSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
     email: { type: String },
-    phone: { type: String, required: true },
+    phone: { type: String },
     message: { type: String },
   },
-  { timestamps: true, collection: "contact" } // force collection name
+  { timestamps: true }
 );
 
-module.exports = mongoose.model("Contact", contactSchema);
+export default mongoose.models.Contact || mongoose.model("Contact", ContactSchema);

@@ -57,7 +57,7 @@ function ContactForm({ onSuccess }) {
     if (!isValid) return;
 
     try {
-      await axios.post("http://localhost:5001/api/contacts", formData);
+      await axios.post("/api/contacts", formData);
       toast.success("Contact saved successfully!");
       setFormData({ name: "", email: "", phone: "", message: "" });
       onSuccess();
