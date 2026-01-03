@@ -210,20 +210,47 @@
 
 
 /* Responsive */
+
 @media (max-width: 600px) {
+  /* Main app container */
   .app-container {
-    padding: 1rem;
+    width: 100%;          
+    max-width: 100%;      
+    padding: 1rem;       
+    box-sizing: border-box;
   }
 
+  
   .contact-form input,
   .contact-form textarea {
-    font-size: 0.9rem;
+    width: 100%;         
+    font-size: 0.9rem;   
+    padding: 0.5rem;     
+    margin-bottom: 0.8rem;
   }
 
+  .contact-form button {
+    width: 100%;         
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+
+ 
+  .contact-list table {
+    width: 100%;          
+    display: block;      
+    overflow-x: auto;     
+  }
+
+  
   .contact-list th,
   .contact-list td {
-    padding: 0.5rem;
+    padding: 0.5rem 0.3rem;
+    font-size: 0.85rem;
+    word-break: break-word;  
   }
+
+  
 }
 
 

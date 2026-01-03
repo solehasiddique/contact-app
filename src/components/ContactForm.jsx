@@ -52,20 +52,26 @@ function ContactForm({ onSuccess }) {
     setIsValid(Object.keys(newErrors).length === 0);
   }, [formData]);
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // mark all fields as touched
+    setTouched({ name: true, email: true, phone: true });
+
     if (!isValid) return;
 
     try {
       await axios.post("/api/contacts", formData);
       toast.success("Contact saved successfully!");
       setFormData({ name: "", email: "", phone: "", message: "" });
+      setTouched({ name: false, email: false, phone: false }); // reset touched
       onSuccess();
     } catch (err) {
       console.error(err);
       toast.error("Failed to save contact.");
     }
   };
+
 
   return (
     <form className="contact-form" onSubmit={handleSubmit}>
